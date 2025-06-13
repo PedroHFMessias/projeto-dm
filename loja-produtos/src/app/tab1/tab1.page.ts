@@ -10,8 +10,15 @@ import {
   IonCardHeader, 
   IonCardTitle, 
   IonCardContent, 
-  IonBadge 
+  IonBadge,
+  IonIcon,
+  IonChip,
+  IonLabel,
+  IonButton,
+  IonSpinner
 } from '@ionic/angular/standalone';
+import { addIcons } from 'ionicons';
+import { storefront, pricetag, eye } from 'ionicons/icons';
 import { ProductService } from '../services/product.service';
 import { Product } from '../models/product.model';
 
@@ -29,19 +36,36 @@ import { Product } from '../models/product.model';
     IonCardHeader, 
     IonCardTitle, 
     IonCardContent, 
-    IonBadge
+    IonBadge,
+    IonIcon,
+    IonChip,
+    IonLabel,
+    IonButton,
+    IonSpinner
   ],
 })
 export class Tab1Page implements OnInit {
   products: Product[] = [];
+  isLoading = false;
 
   constructor(
     private productService: ProductService,
     private router: Router
-  ) {}
+  ) {
+    addIcons({ storefront, pricetag, eye });
+  }
 
   ngOnInit() {
-    this.products = this.productService.getProducts();
+    this.loadProducts();
+  }
+
+  private loadProducts() {
+    this.isLoading = true;
+    // Simular carregamento assíncrono
+    setTimeout(() => {
+      this.products = this.productService.getProducts();
+      this.isLoading = false;
+    }, 500);
   }
 
   openProduct(codigo: string) {
@@ -50,5 +74,9 @@ export class Tab1Page implements OnInit {
 
   getDiscountPercentage(valorNormal: number, valorComDesconto: number): number {
     return Math.round(((valorNormal - valorComDesconto) / valorNormal) * 100);
+  }
+
+  trackByProductCode(index: number, product: Product): string {
+    return product.codigo;
   }
 }

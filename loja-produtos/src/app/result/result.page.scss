@@ -56,6 +56,34 @@
   }
 }
 
+.error-card {
+  margin-bottom: 16px;
+  border: 2px solid var(--ion-color-warning);
+  
+  .error-message {
+    text-align: center;
+    padding: 20px;
+    
+    .error-icon {
+      font-size: 40px;
+      color: var(--ion-color-warning);
+      margin-bottom: 12px;
+    }
+    
+    h3 {
+      color: var(--ion-color-warning);
+      margin-bottom: 8px;
+      font-size: 18px;
+    }
+    
+    p {
+      color: var(--ion-color-medium);
+      font-size: 14px;
+      margin: 0;
+    }
+  }
+}
+
 .products-section {
   margin-bottom: 16px;
   
@@ -108,6 +136,97 @@
   height: 1px;
   background-color: var(--ion-color-light-shade);
   margin: 16px 0;
+}
+
+.totals-section {
+  .total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+    
+    .total-label {
+      font-size: 14px;
+      color: var(--ion-color-dark);
+    }
+    
+    .total-value {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ion-color-dark);
+    }
+    
+    &.final-total {
+      padding-top: 12px;
+      
+      .total-label {
+        font-size: 18px;
+        font-weight: bold;
+        color: var(--ion-color-success);
+      }
+      
+      .total-value {
+        font-size: 20px;
+        font-weight: bold;
+        color: var(--ion-color-success);
+      }
+    }
+  }
+}
+
+.info-card {
+  margin-bottom: 24px;
+}
+
+.info-section {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+  
+  .info-icon {
+    font-size: 24px;
+    color: var(--ion-color-primary);
+    margin-right: 16px;
+    margin-top: 4px;
+    min-width: 24px;
+  }
+  
+  .info-text {
+    flex: 1;
+    
+    h4 {
+      margin: 0 0 8px 0;
+      font-size: 16px;
+      color: var(--ion-color-dark);
+      font-weight: 600;
+    }
+    
+    p {
+      margin: 0;
+      font-size: 14px;
+      color: var(--ion-color-medium-shade);
+      line-height: 1.4;
+    }
+  }
+}
+
+.home-button {
+  --border-radius: 12px;
+  height: 56px;
+  font-weight: 600;
+}
+
+// Melhor aparência no toolbar
+ion-toolbar[color="success"] {
+  --background: linear-gradient(135deg, var(--ion-color-success), var(--ion-color-success-shade));
+  
+  ion-title {
+    font-weight: 600;
+  }
 }
 
 .totals-section {

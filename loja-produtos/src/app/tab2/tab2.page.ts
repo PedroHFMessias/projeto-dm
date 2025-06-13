@@ -11,7 +11,9 @@ import {
   IonCardTitle, 
   IonCardContent, 
   IonButton, 
-  IonIcon 
+  IonIcon,
+  IonChip,
+  IonLabel
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { 
@@ -24,7 +26,8 @@ import {
   map, 
   call, 
   create, 
-  personAdd 
+  personAdd,
+  checkmarkCircle
 } from 'ionicons/icons';
 import { CustomerService } from '../services/customer.service';
 import { Customer } from '../models/customer.model';
@@ -45,7 +48,9 @@ import { Subscription } from 'rxjs';
     IonCardTitle, 
     IonCardContent, 
     IonButton, 
-    IonIcon
+    IonIcon,
+    IonChip,
+    IonLabel
   ]
 })
 export class Tab2Page implements OnInit, OnDestroy {
@@ -67,7 +72,8 @@ export class Tab2Page implements OnInit, OnDestroy {
       map, 
       call, 
       create, 
-      personAdd 
+      personAdd,
+      checkmarkCircle
     });
   }
 

@@ -48,6 +48,48 @@ export class ProductService {
       valorNormal: 4999.00,
       valorComDesconto: 4499.00,
       detalhes: 'Console de videogame de nova geração com SSD ultra-rápido, ray tracing, áudio 3D Tempest, controle DualSense com feedback tátil e gatilhos adaptativos. Inclui 1 controle wireless.'
+    },
+    {
+      codigo: 'PROD007',
+      descricao: 'MacBook Air M2',
+      valorNormal: 8999.00,
+      valorComDesconto: 7999.00,
+      detalhes: 'MacBook Air com chip M2, tela Liquid Retina de 13.6 polegadas, 8GB de memória unificada, SSD de 256GB, câmera FaceTime HD 1080p e até 18 horas de bateria.'
+    },
+    {
+      codigo: 'PROD008',
+      descricao: 'Mouse Gamer Logitech G Pro X',
+      valorNormal: 399.00,
+      valorComDesconto: 299.00,
+      detalhes: 'Mouse gamer sem fio com sensor HERO 25K, switches mecânicos, design ambidestro, bateria de até 70 horas e compatibilidade com PowerPlay.'
+    },
+    {
+      codigo: 'PROD009',
+      descricao: 'Teclado Mecânico Corsair K95',
+      valorNormal: 899.00,
+      valorComDesconto: 699.00,
+      detalhes: 'Teclado mecânico gamer com switches Cherry MX, iluminação RGB por tecla, teclas macro dedicadas, descanso para pulso e estrutura em alumínio.'
+    },
+    {
+      codigo: 'PROD010',
+      descricao: 'Monitor Gamer ASUS 27" 144Hz',
+      valorNormal: 1899.00,
+      valorComDesconto: 1599.00,
+      detalhes: 'Monitor gamer de 27 polegadas Full HD, taxa de atualização de 144Hz, tempo de resposta de 1ms, tecnologia FreeSync e conectividade HDMI/DisplayPort.'
+    },
+    {
+      codigo: 'PROD011',
+      descricao: 'Câmera Canon EOS Rebel T7',
+      valorNormal: 2399.00,
+      valorComDesconto: 1999.00,
+      detalhes: 'Câmera DSLR de 24.1 MP, sensor APS-C CMOS, gravação de vídeo Full HD, Wi-Fi integrado, inclui lente 18-55mm e flash embutido.'
+    },
+    {
+      codigo: 'PROD012',
+      descricao: 'Air Fryer Philips Walita 4L',
+      valorNormal: 699.00,
+      valorComDesconto: 499.00,
+      detalhes: 'Fritadeira elétrica sem óleo com capacidade de 4 litros, tecnologia Rapid Air, painel digital touch, timer até 60 minutos e 7 programas pré-definidos.'
     }
   ];
 

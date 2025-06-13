@@ -1,6 +1,7 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>
+      <ion-icon name="cart" slot="start"></ion-icon>
       Carrinho
     </ion-title>
   </ion-toolbar>
@@ -8,17 +9,32 @@
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Carrinho</ion-title>
+    <ion-toolbar color="primary">
+      <ion-title size="large">
+        <ion-icon name="cart" class="header-icon"></ion-icon>
+        Carrinho
+      </ion-title>
     </ion-toolbar>
   </ion-header>
 
   <div class="cart-container" *ngIf="cartItems.length > 0; else emptyCart">
+    <!-- Header do carrinho -->
+    <div class="page-header">
+      <h2>Seus Produtos</h2>
+      <p>Revise seus itens antes de finalizar a compra</p>
+      <div class="cart-info">
+        <ion-chip color="primary">
+          <ion-icon name="bag"></ion-icon>
+          <ion-label>{{ cartItems.length }} {{ cartItems.length === 1 ? 'item' : 'itens' }}</ion-label>
+        </ion-chip>
+      </div>
+    </div>
+
     <ion-card *ngFor="let item of cartItems; let i = index" class="cart-item">
       <ion-card-content>
         <div class="item-info">
           <h3>{{ item.descricao }}</h3>
-          <p class="item-code">Código: {{ item.codigo }}</p>
+          <p class="item-code">{{ item.codigo }}</p>
           <div class="price-info">
             <span class="original-price">R$ {{ item.valorNormal | number:'1.2-2' }}</span>
             <span class="discount-price">R$ {{ item.valorComDesconto | number:'1.2-2' }}</span>
@@ -61,7 +77,8 @@
           color="success" 
           size="large" 
           class="checkout-button"
-          (click)="finalizePurchase()">
+          (click)="finalizePurchase()"
+          [disabled]="cartItems.length === 0">
           <ion-icon name="card" slot="start"></ion-icon>
           Finalizar Compra
         </ion-button>
@@ -70,10 +87,15 @@
   </div>
 
   <ng-template #emptyCart>
+    <div class="page-header">
+      <h2>Carrinho Vazio</h2>
+      <p>Adicione produtos para começar suas compras</p>
+    </div>
+
     <div class="empty-cart">
       <ion-icon name="cart-outline" class="empty-icon"></ion-icon>
-      <h2>Carrinho Vazio</h2>
-      <p>Adicione produtos ao seu carrinho para vê-los aqui.</p>
+      <h3>Nenhum produto no carrinho</h3>
+      <p>Explore nossa seleção de produtos e encontre ofertas incríveis!</p>
       <ion-button routerLink="/tabs/tab1" color="primary">
         <ion-icon name="storefront" slot="start"></ion-icon>
         Ver Produtos

@@ -1,6 +1,9 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Resultado da Compra</ion-title>
+  <ion-toolbar color="success">
+    <ion-title>
+      <ion-icon name="checkmark-circle" slot="start"></ion-icon>
+      Compra Finalizada
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -17,7 +20,7 @@
     </div>
 
     <!-- Resumo da Compra -->
-    <ion-card class="order-summary-card">
+    <ion-card class="order-summary-card" *ngIf="purchaseData.cartItems.length > 0">
       <ion-card-header>
         <ion-card-title>
           <ion-icon name="receipt" class="summary-icon"></ion-icon>
@@ -58,6 +61,17 @@
             <span class="total-label">Total Pago</span>
             <span class="total-value">R$ {{ purchaseData.total | number:'1.2-2' }}</span>
           </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Mensagem de erro se não há dados -->
+    <ion-card class="error-card" *ngIf="purchaseData.cartItems.length === 0">
+      <ion-card-content>
+        <div class="error-message">
+          <ion-icon name="alert-circle" class="error-icon"></ion-icon>
+          <h3>Ops! Não foi possível carregar os dados da compra.</h3>
+          <p>Mas não se preocupe, sua compra foi processada com sucesso!</p>
         </div>
       </ion-card-content>
     </ion-card>

@@ -14,7 +14,7 @@ import {
   IonIcon 
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { checkmarkCircle, receipt, car, mail, home } from 'ionicons/icons';
+import { checkmarkCircle, receipt, car, mail, home, alertCircle } from 'ionicons/icons';
 import { ProductService } from '../services/product.service';
 import { Product } from '../models/product.model';
 
@@ -48,39 +48,42 @@ export class ResultPage implements OnInit {
     cartItems: [],
     subtotal: 0,
     shipping: 21.54,
-    total: 0
+    total: 21.54
   };
 
   constructor(
     private router: Router,
     private productService: ProductService
   ) {
-    addIcons({ checkmarkCircle, receipt, car, mail, home });
+    addIcons({ checkmarkCircle, receipt, car, mail, home, alertCircle });
   }
 
   ngOnInit() {
-    // Recuperar dados da navegação
+    // Primeiro, tentar recuperar dados da navegação
     const navigation = this.router.getCurrentNavigation();
+    let hasNavigationData = false;
+    
     if (navigation?.extras?.state) {
       this.purchaseData = navigation.extras.state as PurchaseData;
-    } else {
-      // Se não há dados, recuperar do carrinho atual
+      hasNavigationData = true;
+    }
+    
+    // Se não há dados na navegação, tentar usar o carrinho atual
+    if (!hasNavigationData) {
       const currentCart = this.productService.getCart();
-      if (currentCart.length > 0) {
+      
+      if (currentCart && currentCart.length > 0) {
         this.purchaseData = {
           cartItems: [...currentCart],
           subtotal: this.productService.getCartTotal(),
           shipping: 21.54,
           total: this.productService.getCartTotal() + 21.54
         };
-      } else {
-        // Se não há produtos, redirecionar para home
-        this.router.navigate(['/tabs/tab1']);
-        return;
+        hasNavigationData = true;
       }
     }
-
-    // Limpar o carrinho após mostrar o resultado
+    
+    // Sempre limpar o carrinho, independentemente de ter dados ou não
     this.productService.clearCart();
   }
 

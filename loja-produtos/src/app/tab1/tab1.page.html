@@ -1,20 +1,38 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>
-      Início
+      <ion-icon name="storefront" slot="start"></ion-icon>
+      Loja de Produtos
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Produtos</ion-title>
+    <ion-toolbar color="primary">
+      <ion-title size="large">
+        <ion-icon name="storefront" class="header-icon"></ion-icon>
+        Produtos
+      </ion-title>
     </ion-toolbar>
   </ion-header>
 
+  <!-- Header com informações -->
+  <div class="page-header">
+    <h2>Nossos Produtos</h2>
+    <p>Encontre os melhores produtos com descontos imperdíveis!</p>
+    <div class="products-count">
+      <ion-chip color="primary">
+        <ion-icon name="pricetag"></ion-icon>
+        <ion-label>{{ products.length }} produtos disponíveis</ion-label>
+      </ion-chip>
+    </div>
+  </div>
+
   <div class="products-container">
-    <ion-card *ngFor="let product of products" (click)="openProduct(product.codigo)" class="product-card">
+    <ion-card *ngFor="let product of products; trackBy: trackByProductCode" 
+             (click)="openProduct(product.codigo)" 
+             class="product-card">
       <ion-card-header>
         <ion-card-title>{{ product.descricao }}</ion-card-title>
       </ion-card-header>
@@ -31,8 +49,20 @@
           </ion-badge>
         </div>
         
-        <p class="product-code">Código: {{ product.codigo }}</p>
+        <div class="product-footer">
+          <p class="product-code">{{ product.codigo }}</p>
+          <ion-button fill="clear" size="small" color="primary">
+            <ion-icon name="eye" slot="start"></ion-icon>
+            Ver Detalhes
+          </ion-button>
+        </div>
       </ion-card-content>
     </ion-card>
+  </div>
+
+  <!-- Loading state -->
+  <div class="loading-container" *ngIf="isLoading">
+    <ion-spinner name="crescent"></ion-spinner>
+    <p>Carregando produtos...</p>
   </div>
 </ion-content>

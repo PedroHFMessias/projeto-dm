@@ -14,7 +14,12 @@ export const routes: Routes = [
     loadComponent: () => import('./register/register.page').then(m => m.RegisterPage)
   },
   {
-    path: 'result',
-    loadComponent: () => import('./result/result.page').then( m => m.ResultPage)
+    path: 'resultado',
+    loadComponent: () => import('./result/result.page').then(m => m.ResultPage)
+  },
+  {
+    path: '**',
+    redirectTo: '/tabs/tab1',
+    pathMatch: 'full'
   }
 ];
