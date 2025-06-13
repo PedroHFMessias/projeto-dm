@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 1
+      Início
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,9 +9,30 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
+      <ion-title size="large">Produtos</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <div class="products-container">
+    <ion-card *ngFor="let product of products" (click)="openProduct(product.codigo)" class="product-card">
+      <ion-card-header>
+        <ion-card-title>{{ product.descricao }}</ion-card-title>
+      </ion-card-header>
+      
+      <ion-card-content>
+        <div class="price-container">
+          <span class="original-price">R$ {{ product.valorNormal | number:'1.2-2' }}</span>
+          <span class="discount-price">R$ {{ product.valorComDesconto | number:'1.2-2' }}</span>
+        </div>
+        
+        <div class="discount-badge">
+          <ion-badge color="success">
+            {{ getDiscountPercentage(product.valorNormal, product.valorComDesconto) }}% OFF
+          </ion-badge>
+        </div>
+        
+        <p class="product-code">Código: {{ product.codigo }}</p>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>

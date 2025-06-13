@@ -1,0 +1,62 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab1"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Produto</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" *ngIf="product">
+  <div class="product-detail-container">
+    <ion-card class="product-detail-card">
+      <ion-card-header>
+        <ion-card-title>{{ product.descricao }}</ion-card-title>
+        <ion-card-subtitle>Código: {{ product.codigo }}</ion-card-subtitle>
+      </ion-card-header>
+      
+      <ion-card-content>
+        <div class="price-section">
+          <div class="price-container">
+            <span class="original-price">R$ {{ product.valorNormal | number:'1.2-2' }}</span>
+            <span class="discount-price">R$ {{ product.valorComDesconto | number:'1.2-2' }}</span>
+          </div>
+          
+          <ion-badge color="success" class="discount-badge">
+            {{ getDiscountPercentage() }}% OFF
+          </ion-badge>
+          
+          <div class="savings">
+            Você economiza: R$ {{ getSavings() | number:'1.2-2' }}
+          </div>
+        </div>
+        
+        <div class="details-section">
+          <h3>Detalhes do Produto</h3>
+          <p class="product-details">{{ product.detalhes }}</p>
+        </div>
+        
+        <ion-button 
+          expand="block" 
+          color="primary" 
+          size="large"
+          (click)="addToCart()"
+          class="buy-button">
+          <ion-icon name="cart" slot="start"></ion-icon>
+          Comprar Produto
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
+
+<ion-content *ngIf="!product" class="error-content">
+  <div class="error-container">
+    <ion-icon name="alert-circle" class="error-icon"></ion-icon>
+    <h2>Produto não encontrado</h2>
+    <p>O produto solicitado não foi encontrado.</p>
+    <ion-button routerLink="/tabs/tab1" color="primary">
+      Voltar aos Produtos
+    </ion-button>
+  </div>
+</ion-content>

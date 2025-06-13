@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 2
+      Minha Conta
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,9 +9,110 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
+      <ion-title size="large">Minha Conta</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <div class="account-container">
+    <!-- Cliente cadastrado -->
+    <div *ngIf="hasCustomer; else noCustomer">
+      <ion-card class="customer-card">
+        <ion-card-header>
+          <ion-card-title>
+            <ion-icon name="person-circle" class="profile-icon"></ion-icon>
+            Dados do Cliente
+          </ion-card-title>
+        </ion-card-header>
+        
+        <ion-card-content>
+          <div class="customer-info">
+            <div class="info-item">
+              <ion-icon name="person" class="info-icon"></ion-icon>
+              <div class="info-content">
+                <span class="info-label">Nome</span>
+                <span class="info-value">{{ customer?.nome }}</span>
+              </div>
+            </div>
+            
+            <div class="info-item">
+              <ion-icon name="location" class="info-icon"></ion-icon>
+              <div class="info-content">
+                <span class="info-label">Endereço</span>
+                <span class="info-value">{{ customer?.endereco }}</span>
+              </div>
+            </div>
+            
+            <div class="info-item">
+              <ion-icon name="mail" class="info-icon"></ion-icon>
+              <div class="info-content">
+                <span class="info-label">CEP</span>
+                <span class="info-value">{{ customer?.cep }}</span>
+              </div>
+            </div>
+            
+            <div class="info-item">
+              <ion-icon name="business" class="info-icon"></ion-icon>
+              <div class="info-content">
+                <span class="info-label">Cidade</span>
+                <span class="info-value">{{ customer?.cidade }}</span>
+              </div>
+            </div>
+            
+            <div class="info-item">
+              <ion-icon name="home" class="info-icon"></ion-icon>
+              <div class="info-content">
+                <span class="info-label">Bairro</span>
+                <span class="info-value">{{ customer?.bairro }}</span>
+              </div>
+            </div>
+            
+            <div class="info-item">
+              <ion-icon name="map" class="info-icon"></ion-icon>
+              <div class="info-content">
+                <span class="info-label">Estado</span>
+                <span class="info-value">{{ customer?.estado }}</span>
+              </div>
+            </div>
+            
+            <div class="info-item">
+              <ion-icon name="call" class="info-icon"></ion-icon>
+              <div class="info-content">
+                <span class="info-label">Telefone</span>
+                <span class="info-value">{{ customer?.telefone }}</span>
+              </div>
+            </div>
+          </div>
+          
+          <ion-button 
+            expand="block" 
+            color="primary" 
+            size="large"
+            (click)="editCustomer()"
+            class="edit-button">
+            <ion-icon name="create" slot="start"></ion-icon>
+            Editar Dados
+          </ion-button>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <!-- Nenhum cliente cadastrado -->
+    <ng-template #noCustomer>
+      <div class="no-customer">
+        <ion-icon name="person-add" class="no-customer-icon"></ion-icon>
+        <h2>Nenhum Cliente Cadastrado</h2>
+        <p>Cadastre seus dados para uma experiência personalizada e para finalizar suas compras.</p>
+        
+        <ion-button 
+          expand="block" 
+          color="primary" 
+          size="large"
+          (click)="registerCustomer()"
+          class="register-button">
+          <ion-icon name="person-add" slot="start"></ion-icon>
+          Cadastrar Cliente
+        </ion-button>
+      </div>
+    </ng-template>
+  </div>
 </ion-content>

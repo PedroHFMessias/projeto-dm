@@ -1,0 +1,97 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Resultado da Compra</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="result-container">
+    <!-- Ícone de Sucesso -->
+    <div class="success-section">
+      <ion-icon name="checkmark-circle" class="success-icon"></ion-icon>
+      <h1>Compra Realizada com Sucesso!</h1>
+      <p class="success-message">
+        Parabéns! Sua compra foi processada com sucesso. 
+        Você receberá um e-mail de confirmação em breve.
+      </p>
+    </div>
+
+    <!-- Resumo da Compra -->
+    <ion-card class="order-summary-card">
+      <ion-card-header>
+        <ion-card-title>
+          <ion-icon name="receipt" class="summary-icon"></ion-icon>
+          Resumo do Pedido
+        </ion-card-title>
+      </ion-card-header>
+      
+      <ion-card-content>
+        <!-- Lista de Produtos -->
+        <div class="products-section">
+          <h3>Produtos Comprados</h3>
+          <div class="product-item" *ngFor="let item of purchaseData.cartItems">
+            <div class="product-info">
+              <span class="product-name">{{ item.descricao }}</span>
+              <span class="product-code">{{ item.codigo }}</span>
+            </div>
+            <span class="product-price">R$ {{ item.valorComDesconto | number:'1.2-2' }}</span>
+          </div>
+        </div>
+        
+        <div class="summary-divider"></div>
+        
+        <!-- Totais -->
+        <div class="totals-section">
+          <div class="total-row">
+            <span class="total-label">Subtotal ({{ purchaseData.cartItems.length }} {{ purchaseData.cartItems.length === 1 ? 'item' : 'itens' }})</span>
+            <span class="total-value">R$ {{ purchaseData.subtotal | number:'1.2-2' }}</span>
+          </div>
+          
+          <div class="total-row">
+            <span class="total-label">Frete</span>
+            <span class="total-value">R$ {{ purchaseData.shipping | number:'1.2-2' }}</span>
+          </div>
+          
+          <div class="summary-divider"></div>
+          
+          <div class="total-row final-total">
+            <span class="total-label">Total Pago</span>
+            <span class="total-value">R$ {{ purchaseData.total | number:'1.2-2' }}</span>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Informações Adicionais -->
+    <ion-card class="info-card">
+      <ion-card-content>
+        <div class="info-section">
+          <ion-icon name="car" class="info-icon"></ion-icon>
+          <div class="info-text">
+            <h4>Entrega</h4>
+            <p>Seus produtos serão entregues em até 7 dias úteis no endereço cadastrado.</p>
+          </div>
+        </div>
+        
+        <div class="info-section">
+          <ion-icon name="mail" class="info-icon"></ion-icon>
+          <div class="info-text">
+            <h4>Acompanhamento</h4>
+            <p>Você receberá um código de rastreamento por e-mail para acompanhar sua entrega.</p>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Botão para voltar -->
+    <ion-button 
+      expand="block" 
+      color="primary" 
+      size="large"
+      (click)="goHome()"
+      class="home-button">
+      <ion-icon name="home" slot="start"></ion-icon>
+      Voltar ao Início
+    </ion-button>
+  </div>
+</ion-content>

@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 3
+      Carrinho
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,9 +9,75 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
+      <ion-title size="large">Carrinho</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+  <div class="cart-container" *ngIf="cartItems.length > 0; else emptyCart">
+    <ion-card *ngFor="let item of cartItems; let i = index" class="cart-item">
+      <ion-card-content>
+        <div class="item-info">
+          <h3>{{ item.descricao }}</h3>
+          <p class="item-code">Código: {{ item.codigo }}</p>
+          <div class="price-info">
+            <span class="original-price">R$ {{ item.valorNormal | number:'1.2-2' }}</span>
+            <span class="discount-price">R$ {{ item.valorComDesconto | number:'1.2-2' }}</span>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+    
+    <!-- Resumo da Compra -->
+    <ion-card class="summary-card">
+      <ion-card-header>
+        <ion-card-title>
+          <ion-icon name="receipt" class="summary-icon"></ion-icon>
+          Resumo da Compra
+        </ion-card-title>
+      </ion-card-header>
+      
+      <ion-card-content>
+        <div class="summary-info">
+          <div class="summary-row">
+            <span class="summary-label">Subtotal ({{ cartItems.length }} {{ cartItems.length === 1 ? 'item' : 'itens' }})</span>
+            <span class="summary-value">R$ {{ getSubtotal() | number:'1.2-2' }}</span>
+          </div>
+          
+          <div class="summary-row">
+            <span class="summary-label">Frete</span>
+            <span class="summary-value">R$ {{ shippingCost | number:'1.2-2' }}</span>
+          </div>
+          
+          <div class="summary-divider"></div>
+          
+          <div class="summary-row total-row">
+            <span class="summary-label">Total a Pagar</span>
+            <span class="summary-value total-value">R$ {{ getTotalWithShipping() | number:'1.2-2' }}</span>
+          </div>
+        </div>
+        
+        <ion-button 
+          expand="block" 
+          color="success" 
+          size="large" 
+          class="checkout-button"
+          (click)="finalizePurchase()">
+          <ion-icon name="card" slot="start"></ion-icon>
+          Finalizar Compra
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <ng-template #emptyCart>
+    <div class="empty-cart">
+      <ion-icon name="cart-outline" class="empty-icon"></ion-icon>
+      <h2>Carrinho Vazio</h2>
+      <p>Adicione produtos ao seu carrinho para vê-los aqui.</p>
+      <ion-button routerLink="/tabs/tab1" color="primary">
+        <ion-icon name="storefront" slot="start"></ion-icon>
+        Ver Produtos
+      </ion-button>
+    </div>
+  </ng-template>
 </ion-content>

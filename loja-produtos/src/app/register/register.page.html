@@ -1,0 +1,168 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab2"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ isEditing ? 'Editar' : 'Cadastrar' }} Cliente</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="register-container">
+    <form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+      <ion-card class="form-card">
+        <ion-card-header>
+          <ion-card-title>
+            <ion-icon name="person-circle" class="form-icon"></ion-icon>
+            Dados Pessoais
+          </ion-card-title>
+        </ion-card-header>
+        
+        <ion-card-content>
+          <ion-item class="form-item">
+            <ion-input
+              formControlName="nome"
+              label="Nome Completo"
+              labelPlacement="stacked"
+              placeholder="Digite seu nome completo"
+              [class.invalid]="isFieldInvalid('nome')">
+            </ion-input>
+          </ion-item>
+          <div class="error-message" *ngIf="isFieldInvalid('nome')">
+            Nome é obrigatório
+          </div>
+
+          <ion-item class="form-item">
+            <ion-input
+              formControlName="telefone"
+              label="Telefone"
+              labelPlacement="stacked"
+              placeholder="(00) 00000-0000"
+              type="tel"
+              [class.invalid]="isFieldInvalid('telefone')">
+            </ion-input>
+          </ion-item>
+          <div class="error-message" *ngIf="isFieldInvalid('telefone')">
+            Telefone é obrigatório
+          </div>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card class="form-card">
+        <ion-card-header>
+          <ion-card-title>
+            <ion-icon name="location" class="form-icon"></ion-icon>
+            Endereço
+          </ion-card-title>
+        </ion-card-header>
+        
+        <ion-card-content>
+          <ion-item class="form-item">
+            <ion-input
+              formControlName="cep"
+              label="CEP"
+              labelPlacement="stacked"
+              placeholder="00000-000"
+              maxlength="9"
+              (ionInput)="formatCep($event)"
+              [class.invalid]="isFieldInvalid('cep')">
+            </ion-input>
+          </ion-item>
+          <div class="error-message" *ngIf="isFieldInvalid('cep')">
+            CEP é obrigatório
+          </div>
+
+          <ion-item class="form-item">
+            <ion-input
+              formControlName="endereco"
+              label="Endereço"
+              labelPlacement="stacked"
+              placeholder="Digite seu endereço completo"
+              [class.invalid]="isFieldInvalid('endereco')">
+            </ion-input>
+          </ion-item>
+          <div class="error-message" *ngIf="isFieldInvalid('endereco')">
+            Endereço é obrigatório
+          </div>
+
+          <ion-item class="form-item">
+            <ion-input
+              formControlName="bairro"
+              label="Bairro"
+              labelPlacement="stacked"
+              placeholder="Digite o bairro"
+              [class.invalid]="isFieldInvalid('bairro')">
+            </ion-input>
+          </ion-item>
+          <div class="error-message" *ngIf="isFieldInvalid('bairro')">
+            Bairro é obrigatório
+          </div>
+
+          <ion-item class="form-item">
+            <ion-input
+              formControlName="cidade"
+              label="Cidade"
+              labelPlacement="stacked"
+              placeholder="Digite a cidade"
+              [class.invalid]="isFieldInvalid('cidade')">
+            </ion-input>
+          </ion-item>
+          <div class="error-message" *ngIf="isFieldInvalid('cidade')">
+            Cidade é obrigatória
+          </div>
+
+          <ion-item class="form-item">
+            <ion-select
+              formControlName="estado"
+              label="Estado"
+              labelPlacement="stacked"
+              placeholder="Selecione o estado"
+              [class.invalid]="isFieldInvalid('estado')">
+              <ion-select-option value="AC">Acre</ion-select-option>
+              <ion-select-option value="AL">Alagoas</ion-select-option>
+              <ion-select-option value="AP">Amapá</ion-select-option>
+              <ion-select-option value="AM">Amazonas</ion-select-option>
+              <ion-select-option value="BA">Bahia</ion-select-option>
+              <ion-select-option value="CE">Ceará</ion-select-option>
+              <ion-select-option value="DF">Distrito Federal</ion-select-option>
+              <ion-select-option value="ES">Espírito Santo</ion-select-option>
+              <ion-select-option value="GO">Goiás</ion-select-option>
+              <ion-select-option value="MA">Maranhão</ion-select-option>
+              <ion-select-option value="MT">Mato Grosso</ion-select-option>
+              <ion-select-option value="MS">Mato Grosso do Sul</ion-select-option>
+              <ion-select-option value="MG">Minas Gerais</ion-select-option>
+              <ion-select-option value="PA">Pará</ion-select-option>
+              <ion-select-option value="PB">Paraíba</ion-select-option>
+              <ion-select-option value="PR">Paraná</ion-select-option>
+              <ion-select-option value="PE">Pernambuco</ion-select-option>
+              <ion-select-option value="PI">Piauí</ion-select-option>
+              <ion-select-option value="RJ">Rio de Janeiro</ion-select-option>
+              <ion-select-option value="RN">Rio Grande do Norte</ion-select-option>
+              <ion-select-option value="RS">Rio Grande do Sul</ion-select-option>
+              <ion-select-option value="RO">Rondônia</ion-select-option>
+              <ion-select-option value="RR">Roraima</ion-select-option>
+              <ion-select-option value="SC">Santa Catarina</ion-select-option>
+              <ion-select-option value="SP">São Paulo</ion-select-option>
+              <ion-select-option value="SE">Sergipe</ion-select-option>
+              <ion-select-option value="TO">Tocantins</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <div class="error-message" *ngIf="isFieldInvalid('estado')">
+            Estado é obrigatório
+          </div>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-button 
+        expand="block" 
+        type="submit"
+        color="success" 
+        size="large"
+        [disabled]="!customerForm.valid"
+        class="save-button">
+        <ion-icon name="checkmark-circle" slot="start"></ion-icon>
+        Salvar Dados
+      </ion-button>
+    </form>
+  </div>
+</ion-content>

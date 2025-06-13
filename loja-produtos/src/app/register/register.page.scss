@@ -1,0 +1,75 @@
+.register-container {
+  padding: 16px;
+  padding-bottom: 32px;
+}
+
+.form-card {
+  margin-bottom: 16px;
+  
+  .form-icon {
+    font-size: 20px;
+    margin-right: 8px;
+    color: var(--ion-color-primary);
+  }
+}
+
+.form-item {
+  margin-bottom: 8px;
+  --border-color: var(--ion-color-medium);
+  
+  &.invalid {
+    --border-color: var(--ion-color-danger);
+    
+    ion-input, ion-select {
+      --color: var(--ion-color-danger);
+    }
+  }
+  
+  ion-input, ion-select {
+    --padding-start: 12px;
+    --padding-end: 12px;
+  }
+  
+  ion-input[label] {
+    --padding-top: 16px;
+    --padding-bottom: 16px;
+  }
+}
+
+.error-message {
+  color: var(--ion-color-danger);
+  font-size: 12px;
+  margin: 4px 16px 12px 16px;
+  font-weight: 500;
+}
+
+.save-button {
+  --border-radius: 12px;
+  height: 56px;
+  font-weight: 600;
+  margin-top: 24px;
+  
+  &[disabled] {
+    opacity: 0.5;
+  }
+}
+
+// Estilos para melhor aparência dos campos
+ion-item {
+  --inner-padding-end: 0;
+  --inner-border-width: 0 0 1px 0;
+  --border-radius: 8px;
+  --background: var(--ion-color-light);
+  margin-bottom: 4px;
+}
+
+ion-input, ion-select {
+  --placeholder-color: var(--ion-color-medium);
+  --placeholder-opacity: 0.7;
+}
+
+// Estilo para select
+ion-select {
+  --placeholder-color: var(--ion-color-medium);
+  --placeholder-opacity: 0.7;
+}

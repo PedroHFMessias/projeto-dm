@@ -1,0 +1,127 @@
+.cart-container {
+  padding: 16px;
+}
+
+.cart-item {
+  margin-bottom: 12px;
+  
+  .item-info {
+    h3 {
+      margin: 0 0 8px 0;
+      color: var(--ion-color-dark);
+      font-size: 16px;
+    }
+    
+    .item-code {
+      margin: 0 0 12px 0;
+      font-size: 12px;
+      color: var(--ion-color-medium);
+    }
+    
+    .price-info {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      
+      .original-price {
+        font-size: 14px;
+        color: var(--ion-color-medium);
+        text-decoration: line-through;
+      }
+      
+      .discount-price {
+        font-size: 18px;
+        font-weight: bold;
+        color: var(--ion-color-success);
+      }
+    }
+  }
+}
+
+.summary-card {
+  margin-top: 16px;
+  border: 2px solid var(--ion-color-primary);
+  
+  .summary-icon {
+    font-size: 20px;
+    margin-right: 8px;
+    color: var(--ion-color-primary);
+  }
+}
+
+.summary-info {
+  margin-bottom: 20px;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  
+  .summary-label {
+    font-size: 16px;
+    color: var(--ion-color-dark);
+  }
+  
+  .summary-value {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--ion-color-dark);
+  }
+  
+  &.total-row {
+    padding-top: 12px;
+    
+    .summary-label {
+      font-size: 18px;
+      font-weight: bold;
+      color: var(--ion-color-primary);
+    }
+    
+    .total-value {
+      font-size: 20px;
+      font-weight: bold;
+      color: var(--ion-color-success);
+    }
+  }
+}
+
+.summary-divider {
+  height: 1px;
+  background-color: var(--ion-color-light-shade);
+  margin: 12px 0;
+}
+
+.checkout-button {
+  --border-radius: 12px;
+  height: 50px;
+  font-weight: 600;
+}
+
+.empty-cart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 60vh;
+  text-align: center;
+  padding: 32px;
+  
+  .empty-icon {
+    font-size: 80px;
+    color: var(--ion-color-medium);
+    margin-bottom: 24px;
+  }
+  
+  h2 {
+    color: var(--ion-color-dark);
+    margin-bottom: 16px;
+  }
+  
+  p {
+    color: var(--ion-color-medium);
+    margin-bottom: 32px;
+    line-height: 1.5;
+  }
+}
